@@ -22,6 +22,27 @@ public class EvenOddArray {
 		}
 		return A;
 	}
+	
+	public static void evenOddStaticArray(int[] arr) {
+		int even = 0;
+		int odd = arr.length - 1;
+		while (even < odd) {
+			if (arr[even] % 2 == 0) {
+				even++;
+			} else {
+				swap(arr, even, odd--);
+			}
+		}
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " , ");
+		}
+	}
+
+	private static void swap(int[] arr, int even, int odd) {
+		int temp = arr[even];
+		arr[even] = arr[odd];
+		arr[odd] = temp;
+	}
 
 	// Time: O(n)
 	// Space: O(n)
@@ -57,7 +78,10 @@ public class EvenOddArray {
 		for (int i = 0; i <= 101; i++) {
 			list.add(i);
 		}
+		
+		int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 		System.out.println(evenOdd(list));
+		evenOddStaticArray(arr);
 		System.out.println(evenOddMoreSpace(list));
 	}
 

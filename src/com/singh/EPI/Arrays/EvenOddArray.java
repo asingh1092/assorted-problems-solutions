@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class EvenOddArray {
 
@@ -73,8 +74,9 @@ public class EvenOddArray {
 
 	public static void main(String[] args) {
 		List<Integer> list = new ArrayList<>();
+		Random rand = new Random();
 		for (int i = 0; i <= 101; i++) {
-			list.add(i);
+			list.add(rand.nextInt(10));
 		}
 		
 		int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};

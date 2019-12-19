@@ -2,6 +2,7 @@ package com.singh.EPI.Arrays;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SortedArrayRemoveDups {
 	
@@ -21,12 +22,12 @@ public class SortedArrayRemoveDups {
 
 	public static void main(String[] args) {
 		List<Integer> A = new ArrayList<Integer>();
-		A.add(2);
-		A.add(2);
-		A.add(2);
-		A.add(3);
-		A.add(4);
-		A.add(5);
+		Random rand = new Random();
+		int randNum;
+		for (int i = 1; i < 50; i++) {
+			randNum = rand.nextInt(256);
+			A.add(randNum);
+		}
 		System.out.println(sortedArrayRemoveDups(A));
 
 	}

@@ -129,6 +129,25 @@ public class DutchNationalFlag {
 		}
 		return A;
 	}
+	
+	public static List<Color> dutchFlagPartition3(List<Color> A, int pivotIndex) {
+		Color pivot = A.get(pivotIndex);
+		int equal = 0;
+		int fwPointer = 0;
+		int bwPointer = A.size();
+		while (equal < bwPointer) {
+			if (A.get(equal).ordinal() < pivot.ordinal()) {
+				Collections.swap(A, fwPointer++, equal++);
+			}
+			else if (A.get(equal).ordinal() > pivot.ordinal()) {
+				Collections.swap(A, equal, --bwPointer);
+			} else {
+				++equal;
+			}
+		}
+		
+		return A;
+	}
 
 	public static void main(String args[]) {
 		List<Color> list = new ArrayList<>();
@@ -156,6 +175,9 @@ public class DutchNationalFlag {
 		System.out.println(dutchFlagPartitionStaticArray(arr, 0));
 		System.out.println(dutchFlagPartitionStaticArray(arr, 1));
 		System.out.println(dutchFlagPartitionStaticArray(arr, 2));
+		System.out.println(dutchFlagPartition3(list, 0));
+		System.out.println(dutchFlagPartition3(list, 1));
+		System.out.println(dutchFlagPartition3(list, 2));
 	}
 
 }

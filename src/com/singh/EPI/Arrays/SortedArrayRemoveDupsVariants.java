@@ -28,14 +28,16 @@ public class SortedArrayRemoveDupsVariants {
 		return count;
 	}
 	
+	// the textbook is wrong about this solution 
 	public static int deleteDupsStaticArrays(int[] A) {
-		int count = 0;
+		Arrays.sort(A);
+		System.out.println("Input Array: " + Arrays.toString(A));
 		if (Arrays.asList(A).isEmpty()) {
-			return count;
+			return 0;
 		}
-		for (int i = 0; i < A.length; i++) {
-			count += 1;
-			if (!(A[count + i] == A[i])) {
+		int count = 1;
+		for (int i = 1; i < A.length; i++) {
+			if (!(A[count - 1] == A[i])) {
 				A[count] = A[i];
 				count++;
 			}
@@ -43,14 +45,22 @@ public class SortedArrayRemoveDupsVariants {
 		
 		return count;
 	}
+	
+	
 
 	public static void main(String[] args) {
 		List<Integer> intList = new ArrayList<Integer>();
 		Random rand = new Random();
+		for (int i = 0; i < 100; i++) {
+			intList.add(rand.nextInt(10));
+		}
+		
+		int[] intArray = new int[15]; 
 		for (int i = 0; i < 15; i++) {
-			intList.add(rand.nextInt(1000000));
+			intArray[i] = rand.nextInt(5);
 		}
 		System.out.println(deleteDups(intList));
+		System.out.println(deleteDupsStaticArrays(intArray));
 	}
 
 }

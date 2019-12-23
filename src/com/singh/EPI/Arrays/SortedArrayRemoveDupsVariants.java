@@ -28,7 +28,6 @@ public class SortedArrayRemoveDupsVariants {
 		return count;
 	}
 	
-	// the textbook is wrong about this solution 
 	public static int deleteDupsStaticArrays(int[] A) {
 		Arrays.sort(A);
 		System.out.println("Input Array: " + Arrays.toString(A));

@@ -1,16 +1,18 @@
 package com.singh.EPI.Strings;
 
-public class LookAndSay {
+import java.util.Random;
 
-	public static String lookAndSay(int n) {
+public class LookNSay {
+	
+	public static String lookNSay(int n) {
 		String str = "1";
-		for (int i = 1; i < n; i++) {
-			str = nextNumLookAndSay(str);
+		for (int i = 1; i <= n; i++) {
+			str = nextNumber(str);
 		}
 		return str;
 	}
 
-	private static String nextNumLookAndSay(String str) {
+	private static String nextNumber(String str) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < str.length(); i++) {
 			int count = 1;
@@ -24,9 +26,10 @@ public class LookAndSay {
 	}
 
 	public static void main(String[] args) {
-		for (int i = 0; i < 20; i++) {
-			System.out.println(lookAndSay(i));
-		}
+		Random rand = new Random();
+		int num = rand.nextInt(50);
+		System.out.println(num);
+		System.out.println(lookNSay(num));
 	}
 
 }

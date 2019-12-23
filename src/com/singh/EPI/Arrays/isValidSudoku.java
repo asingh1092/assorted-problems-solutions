@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class isValidSudoku {
 
-	private boolean hasDupValues(List<List<Integer>> board, int rowStart, int rowEnd, int colStart, int colEnd) {
+	private static boolean hasDupValues(List<List<Integer>> board, int rowStart, int rowEnd, int colStart, int colEnd) {
 		List<Boolean> isPresent = new ArrayList<>(Collections.nCopies(board.size() + 1, false));
 		for (int i = rowStart; i < rowEnd; i++) {
 			for (int j = colStart; j < colEnd; j++) {
@@ -22,7 +22,7 @@ public class isValidSudoku {
 	
 	// Space: O(n) because of the bit array used to check constraints
 	// Time: O(n^2) 
-	public boolean isValidSudoko(List<List<Integer>> board) {
+	public static boolean isValidSudoko(List<List<Integer>> board) {
 		
 		// check row and column sizes are the same
 		if (board.size() != board.get(0).size()) {
@@ -57,9 +57,15 @@ public class isValidSudoku {
 	}
 
 	public static void main(String[] args) {
-		List<List<Integer>> board = new ArrayList<>();
+		List<List<Integer>> board = new ArrayList<List<Integer>>();
 		Random rand = new Random();
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				board.get(i).add(j, rand.nextInt(10));;
+			}
+		}
 		
+		System.out.println(isValidSudoko(board));
 		
 	}
 

@@ -36,6 +36,24 @@ public class ReverseSublist {
 		return dummyHead.next;
 	}
 	
+	public ListNode<Integer> reverseListIteratively(ListNode<Integer> head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		
+		ListNode<Integer> reversedList = head;
+		ListNode<Integer> listIter = head.next;
+		
+		while (listIter != null) {
+			ListNode<Integer> temp = listIter;
+			listIter = listIter.next;
+			temp.next = reversedList;
+			reversedList = temp;
+		}
+		
+		return head;
+	}
+	
 	public ListNode<Integer> reverseList(ListNode<Integer> list) {
 		ListNode<Integer> prevNode = null;
 		ListNode<Integer> current = list;

@@ -51,7 +51,7 @@ public class ReverseSublist {
 			reversedList = temp;
 		}
 		
-		return head;
+		return reversedList;
 	}
 	
 	public ListNode<Integer> reverseList(ListNode<Integer> list) {

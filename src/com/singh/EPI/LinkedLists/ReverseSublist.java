@@ -13,7 +13,7 @@ public class ReverseSublist {
 			return list;
 		}
 		
-		ListNode<Integer> dummyHead = new ListNode<>(0, null);
+		ListNode<Integer> dummyHead = new ListNode<>(0, list);
 		ListNode<Integer> sublistHead = dummyHead;
 		
 		// find start of sublist
@@ -30,9 +30,25 @@ public class ReverseSublist {
 			sublistIter.next = temp.next;
 			temp.next = sublistHead.next;
 			sublistHead.next= temp;
+			start++;
 		}
 		
 		return dummyHead.next;
+	}
+	
+	public ListNode<Integer> reverseList(ListNode<Integer> list) {
+		ListNode<Integer> prevNode = null;
+		ListNode<Integer> current = list;
+		ListNode<Integer> nextNode = null;
+		
+		while (current != null) {
+			nextNode = current.next;
+			current.next = prevNode;
+			prevNode = current;
+			current = nextNode;
+		}
+		list = prevNode;
+		return list;
 	}
 
 	public static void main(String[] args) {

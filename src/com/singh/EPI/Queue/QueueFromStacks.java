@@ -10,7 +10,7 @@ public class QueueFromStacks {
 		private Deque<Integer> dequeue = new ArrayDeque<>();
 
 		// enqueue
-		public void enqueueStack(Integer n) {
+		public  void enqueueStack(Integer n) {
 			enqueue.addFirst(n);
 		}
 
@@ -29,8 +29,14 @@ public class QueueFromStacks {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Queue queueStack = new Queue();
+		for (int i = 0; i < 10; i++) {
+			queueStack.enqueueStack(i);
+		}
+		
+		for (int i = 0; i < 10; i++) {
+			System.out.println(queueStack.dequeueStack());
+		}
 	}
 
 }

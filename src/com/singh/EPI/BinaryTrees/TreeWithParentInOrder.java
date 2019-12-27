@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TreeWithParentInOrder {
-
+	
+	// Time: O(n)
+	// Space O(1)
 	public static List<Integer> inOrderTraversal(MyBinaryTreeNode<Integer> tree) {
 		MyBinaryTreeNode<Integer> prev = null;
 		MyBinaryTreeNode<Integer> curr = tree;

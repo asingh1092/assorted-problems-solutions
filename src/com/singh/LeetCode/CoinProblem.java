@@ -1,3 +1,4 @@
+package com.singh.LeetCode;
 
 public class CoinProblem {
 

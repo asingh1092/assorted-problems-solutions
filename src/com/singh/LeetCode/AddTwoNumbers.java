@@ -30,7 +30,7 @@ public class AddTwoNumbers {
 
     public static ListNode addTwoNumbers(ListNode first, ListNode second) {
         ListNode retHead = new ListNode();
-        int carry;
+        int carry = 0;
         ListNode dummyRet = retHead;
         ListNode dummyFirst = first;
         ListNode dummySecond = second;
@@ -41,9 +41,9 @@ public class AddTwoNumbers {
         }
 
         // add heads
-        int headTotal = dummyFirst.data + dummySecond.data;
-        carry = headTotal / 10;
-        retHead.data = headTotal % 10;
+//        int headTotal = dummyFirst.data + dummySecond.data;
+//        carry = headTotal / 10;
+//        retHead.data = headTotal % 10;
 
         // go down rest of list
         while (dummyFirst.next != null && dummySecond.next != null) {
@@ -76,12 +76,17 @@ public class AddTwoNumbers {
             dummySecond = dummySecond.next;
         }
 
+        // last nodes in list
+        int total = dummyFirst.data + dummySecond.data + carry;
+        carry = total / 10;
+        dummyRet.next = new ListNode(total % 10);
+
         // add last carry if there is one
         if (carry > 0) {
             dummyRet.next = new ListNode(carry);
         }
 
-        return retHead;
+        return retHead.next;
     }
 
 
@@ -98,6 +103,25 @@ public class AddTwoNumbers {
         l1 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
         l2 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))));
         System.out.println(addTwoNumbers(l1, l2));
+    }
+
+    public static ListNode addTwoNumbersCorrect(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode curr = dummyHead;
+        int carry = 0;
+        while (l1 != null || l2 != null || carry != 0) {
+            int x = (l1 != null) ? l1.data : 0;
+            int y = (l2 != null) ? l2.data : 0;
+            int sum = carry + x + y;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+            if (l1 != null)
+                l1 = l1.next;
+            if (l2 != null)
+                l2 = l2.next;
+        }
+        return dummyHead.next;
     }
 }
 

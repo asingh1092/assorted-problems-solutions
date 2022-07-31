@@ -24,7 +24,7 @@ public class IsSubsetOf {
         O(N*M + M)
      */
 
-    public static boolean isSubsetOf(List<Character> list1, List<Character> list2) {
+    public static <T extends Comparable<? super T>> boolean isSubsetOf(List<T> list1, List<T> list2) {
         // check list sizes
         if (list2.size() < list1.size()) {
             return false;
@@ -35,9 +35,9 @@ public class IsSubsetOf {
         Collections.sort(list2);
 
         int last = 0;
-        for (Character character : list1) {
+        for (T item1 : list1) {
             for (int pointer2 = last; pointer2 < list2.size(); pointer2++) {
-                if (character == list2.get(pointer2)) {
+                if (item1 == list2.get(pointer2)) {
                     //set pointer to last position
                     last = pointer2;
                     break;
@@ -67,5 +67,6 @@ public class IsSubsetOf {
         list1 = Arrays.asList('q', 'b');
         list2 = Arrays.asList('c', 'd', 'b', 'l', 'z', 'q', 'q', 'l');
         System.out.println(isSubsetOf(list1, list2));
+
     }
 }

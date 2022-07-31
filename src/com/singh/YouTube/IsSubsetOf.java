@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class GarrettProblem {
+public class IsSubsetOf {
 
     /*
         assume list2 is greater than or equal to list1 in terms of size

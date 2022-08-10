@@ -2,6 +2,7 @@ package src.com.singh.Grind75.Array;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 public class TwoSum {

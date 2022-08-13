@@ -1,4 +1,4 @@
-package com.singh.EPI.BinaryTrees;
+package src.com.singh.EPI.BinaryTrees;
 
 public class TreeTraversal {
 

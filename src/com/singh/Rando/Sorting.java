@@ -106,7 +106,8 @@ public class Sorting {
      * @param unsorted
      */
     public void quickSort(int[] unsorted) {
-
+        int size = unsorted.length;
+        int pivot = unsorted[(unsorted.length - 1) / 2];
     }
 
     public static void main(String[] args) {

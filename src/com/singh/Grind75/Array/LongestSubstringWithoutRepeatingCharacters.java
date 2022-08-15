@@ -12,19 +12,12 @@ public class LongestSubstringWithoutRepeatingCharacters {
      */
 
     public static int longestSubstringWithoutRepeatingCharactersWRONG(String s) {
-        if (s.isEmpty()) {
-            return 0;
-        }
-        if (s.equals(" ")) {
-            return 1;
-        }
         Set<Character> hSet = new HashSet<>();
         int size = s.length();
         int counter = 0; // count substring -> reset if necessary
         int begin = 0; // beginning of window
         int end = 0; // end of window
         int d = 0; // thing to check counter against; update if counter is larger
-        char[] charArray = s.toCharArray();
         while (end < size) {
             if (hSet.contains(s.charAt(end))) {
                 // reset counter because we found a repeating character

@@ -4,7 +4,9 @@ import java.util.Stack;
 
 public class ValidPalindrome {
 
-    // remove white space first
+    // Don't assume its just ascii characters. Don't forget about case either.
+
+    // remove white space && make upper case characters into lower case
 
     /* Use a stack or reverse the string and compare to original
 
@@ -37,17 +39,13 @@ public class ValidPalindrome {
     }
 
     public static boolean validPalindrome(String s) {
-        boolean isEven = s.length() % 2 == 0;
-
         int beginIdx = 0;
         int endIdx = s.length() - 1;
-
-        while (isEven ? beginIdx < endIdx : beginIdx <= endIdx) {
-            if (s.charAt(beginIdx) != s.charAt(endIdx)) {
+        while (beginIdx <= endIdx) {
+            if (!Character.isLetterOrDigit(s.charAt(beginIdx))) beginIdx++;
+            else if (!Character.isLetterOrDigit(s.charAt(endIdx))) endIdx--;
+            else if (Character.toLowerCase(s.charAt(beginIdx++)) != Character.toLowerCase(s.charAt(endIdx--)))
                 return false;
-            }
-            beginIdx++;
-            endIdx--;
         }
         return true;
     }

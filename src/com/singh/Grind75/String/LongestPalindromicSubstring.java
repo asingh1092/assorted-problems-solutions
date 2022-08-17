@@ -3,7 +3,7 @@ package src.com.singh.Grind75.String;
 public class LongestPalindromicSubstring {
 
     // Ask about ascii characters vs unicode + if there is any white space and case type
-    // is this a sliding window problem? dynamic programming?
+    // DYNAMIC PROGRAMMING
 
     /*
         Ex 1: babad -> bab or aba

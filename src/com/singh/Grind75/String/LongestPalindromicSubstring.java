@@ -50,6 +50,8 @@ public class LongestPalindromicSubstring {
     }
 
     // bottom-top method
+    // O(n^2) time
+    // O(1) space
     public static String longestPalindromicSubstring(String s) {
         int maxLen = 0, lo = 0;
         int size = s.length();

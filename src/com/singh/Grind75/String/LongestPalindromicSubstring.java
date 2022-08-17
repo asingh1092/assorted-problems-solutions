@@ -52,38 +52,33 @@ public class LongestPalindromicSubstring {
     // bottom-top method
     // O(n^2) time
     // O(1) space
-    public static String longestPalindromicSubstring(String s) {
-        int maxLen = 0, lo = 0;
-        int size = s.length();
-
-        for (int i = 0; i < size; i++) {
-            // Odd: check around char at i;
-            int L = i, R = i;
-            while (L > 0 && R < size && s.charAt(L) == s.charAt(R)) {
-                L--;
-                R++;
-            }
-            if (maxLen < R - L - 1) {
-                lo = L + 1;
-                maxLen = R - L - 1;
-            }
-            // Even: check around i and i + 1
-            L = i;
-            R = i + 1;
-            while (L > 0 && R < size && s.charAt(L) == s.charAt(R)) {
-                L--;
-                R++;
-            }
-            if (maxLen < R - L - 1) {
-                lo = L + 1;
-                maxLen = R - L - 1;
+    public String longestPalindromicSubstring(String s) {
+        if (s == null || s.length() < 1) return "";
+        int start = 0, end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = expandAroundCenter(s, i, i);
+            int len2 = expandAroundCenter(s, i, i + 1);
+            int len = Math.max(len1, len2);
+            if (len > end - start) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
             }
         }
-        return s.substring(lo, lo + maxLen);
+        return s.substring(start, end + 1);
+    }
+
+    private int expandAroundCenter(String s, int left, int right) {
+        int L = left, R = right;
+        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+            L--;
+            R++;
+        }
+        return R - L - 1;
     }
 
     public static void main(String[] args) {
-        System.out.println(longestPalindromicSubstring("babad"));
-        System.out.println(longestPalindromicSubstring("cbbd"));
+        LongestPalindromicSubstring l = new LongestPalindromicSubstring();
+        System.out.println(l.longestPalindromicSubstring("babad"));
+        System.out.println(l.longestPalindromicSubstring("cbbd"));
     }
 }

@@ -29,7 +29,7 @@ public class GroupAnagrams {
         isPrime -> N % N = 0 && N % 1 = O
      */
 
-    public List<List<String>> groupAnagrams(String[] strs) {
+    public List<List<String>> groupAnagramsWRONG(String[] strs) {
         List<Integer> primes = sieve.generatePrimesToEratosthenes(500);
 
         Map<Character, Integer> primeCharMap = new TreeMap<>();
@@ -62,9 +62,46 @@ public class GroupAnagrams {
         return ret;
     }
 
+    /*
+        Time: O(nlogn + m)
+        SpacE: O(m)
+     */
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new TreeMap<>();
+        for (String str : strs) {
+            char[] ca = str.toCharArray();
+            Arrays.sort(ca);
+            String key = String.valueOf(ca);
+            if (!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
+            }
+            map.get(key).add(str);
+        }
+        return new ArrayList<>(map.values());
+    }
+
+    public List<List<String>> groupAnagramsN(String[] strs) {
+        Map<String, List<String>> map = new TreeMap<>();
+        for (String s : strs) {
+            char[] ca = new char[26];
+            char[] strArr = s.toCharArray();
+            for (int j = 0; j < s.length(); j++) {
+                ca[strArr[j] - 'a']++;
+            }
+            String key = String.valueOf(ca);
+            if (!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
+            }
+            map.get(key).add(s);
+        }
+        return new ArrayList<>(map.values());
+    }
+
     public static void main(String[] args) {
         GroupAnagrams anagrams = new GroupAnagrams();
-        String[] strs = new String[]{"eat","tea","tan","ate","nat","bat"};
+        String[] strs = new String[]{"eat", "tea", "tan", "ate", "nat", "bat"};
+        System.out.println(anagrams.groupAnagramsWRONG(strs));
         System.out.println(anagrams.groupAnagrams(strs));
+        System.out.println(anagrams.groupAnagramsN(strs));
     }
 }

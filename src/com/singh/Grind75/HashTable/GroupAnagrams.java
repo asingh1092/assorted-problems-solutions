@@ -30,22 +30,41 @@ public class GroupAnagrams {
      */
 
     public List<List<String>> groupAnagrams(String[] strs) {
-        List<Integer> primes = sieve.generatePrimesToEratosthenes(100);
-        Map<Integer, List<String>> map = new TreeMap<>();
-        StringBuilder ret = new StringBuilder();
+        List<Integer> primes = sieve.generatePrimesToEratosthenes(500);
+
+        Map<Character, Integer> primeCharMap = new TreeMap<>();
+        int alphabet = 0;
+        for (char c : "abcdefghijklmnopqrstuvwxyz".toCharArray()) {
+            primeCharMap.put(c, primes.get(alphabet));
+            alphabet++;
+        }
+        Map<Integer, ArrayList<String>> map = new TreeMap<>();
+        List<List<String>> ret = new ArrayList<>();
 
         for (String str : strs) {
-            int value = 0;
+            int value = 1;
             for (int i = 0; i < str.length(); i++) {
-                value += primes.get(i);
+                for (char c : str.toCharArray()) {
+                    value *= primeCharMap.get(c);
+                }
             }
             if (map.containsKey(value)) {
                 map.get(value).add(str);
             } else {
-                map.putIfAbsent(value, Arrays.asList(str));
+                ArrayList<String> listToPut = new ArrayList<>();
+                listToPut.add(str);
+                map.putIfAbsent(value, listToPut);
             }
         }
+        for (Integer i : map.keySet()) {
+            ret.add(map.get(i));
+        }
+        return ret;
+    }
 
-        return Collections.emptyList();
+    public static void main(String[] args) {
+        GroupAnagrams anagrams = new GroupAnagrams();
+        String[] strs = new String[]{"eat","tea","tan","ate","nat","bat"};
+        System.out.println(anagrams.groupAnagrams(strs));
     }
 }

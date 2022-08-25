@@ -1,5 +1,7 @@
 package src.com.singh.Grind75.Array;
 
+import java.util.Arrays;
+
 public class ProductOfArrayExceptSelf {
 
     /*
@@ -14,16 +16,41 @@ public class ProductOfArrayExceptSelf {
                 suffix: {30, 30, 6, 2, 2}
      */
 
+    /*
+       Time: O(n^2)
+       Space O(n)
+
+     */
+
     public static int[] productExceptSelfWrong(int[] nums) {
         int size = nums.length;
-        int total = 1;
-        int[] answer = new int[size];
-        for (int num : nums) {
-            total *= num;
-        }
+        int[] ret = new int[size];
         for (int i = 0; i < size; i++) {
-            answer[i] = (nums[i] != 0) ? total / nums[i] : total;
+            int product = 1;
+            int forward = i - 1;
+            int backward = i + 1;
+            while (forward >= 0) {
+                product *= nums[forward];
+                forward--;
+            }
+            while (backward < size) {
+                product *= nums[backward];
+                backward++;
+            }
+            ret[i] = product;
         }
-        return answer;
+        return ret;
+    }
+
+    public static int[] productExceptSelf(int[] nums) {
+        int size = nums.length;
+        int[] ret = new int[size];
+
+        return ret;
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(productExceptSelfWrong(new int[]{-1,1,0,-3,3})));
     }
 }

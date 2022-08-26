@@ -1,5 +1,8 @@
 package src.com.singh.Grind75.Recursion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Fibonacci {
 
     /*
@@ -21,7 +24,11 @@ public class Fibonacci {
      */
 
 
-    public static int fibSeqToNaive(int n) {
+    /*
+        Time: O(n)
+        Space: O(n) -> where n is the size of the recursion tree
+     */
+    public int fibSeqToNaive(int n) {
         if (n < 0) {
             // return empty}
             throw new IllegalArgumentException();
@@ -35,26 +42,43 @@ public class Fibonacci {
         return fibSeqToNaive(n - 1) + fibSeqToNaive(n - 2);
     }
 
-    public static int fibSeqToDP(int n) {
+    public int fibSeqToDP(int n) {
         if (n < 0) {
             throw new IllegalArgumentException();
         }
-        int[] cache = new int[n];
+        int[] cache = new int[n + 1];
         cache[0] = 0;
         cache[1] = 1;
-        for (int i = 2; i < n; i++) {
+        if (n <= 1) {
+            return cache[n];
+        }
+        for (int i = 2; i <= n; i++) {
             cache[i] = cache[i - 1] + cache[i - 2];
         }
-        return cache[n - 1] + cache[n - 2];
+        return cache[n];
     }
 
-    public static int fibSeqIterative
+    public int fibSeqToIterative(int n) {
+        int first = 0;
+        int second = 1;
+        int ret = 0;
+        for (int i = 2; i <= n; i++) {
+            ret = first + second;
+            first = second;
+            second = ret;
+        }
+        return ret;
+    }
 
     public static void main(String[] args) {
-        System.out.println(fibSeqToNaive(10));
-        System.out.println(fibSeqToDP(10));
-        System.out.println(fibSeqToNaive(Integer.MAX_VALUE));
-        System.out.println(fibSeqToDP(Integer.MAX_VALUE));
+        Fibonacci fib = new Fibonacci();
+        System.out.println(fib.fibSeqToNaive(10));
+        System.out.println(fib.fibSeqToDP(10));
+        System.out.println(fib.fibSeqToDP(1));
+        System.out.println(fib.fibSeqToIterative(10));
+        //System.out.println(fibSeqToNaive(9999)); // really damn slow
+        System.out.println(fib.fibSeqToDP(9999));
+        System.out.println(fib.fibSeqToIterative(9999));
     }
 }
 

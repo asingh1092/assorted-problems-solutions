@@ -20,6 +20,11 @@ public class PalidromeNumber {
         return true;
     }
 
+    public static boolean isPalindromeNumberNoConvert(int x) {
+        // TODO
+        return true;
+    }
+
     public static void main(String[] args) {
         System.out.println(isNumberPalindrome(121));
         System.out.println(isNumberPalindrome(-121));

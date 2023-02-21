@@ -1,6 +1,8 @@
 package src.com.singh.LeetCode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ZigZagConversion {
@@ -68,11 +70,17 @@ public class ZigZagConversion {
 
 
     public static String convert(String input, int numRows) {
-        StringBuilder sb = new StringBuilder();
         int counter = 0;
         boolean reverse = false;
+        HashMap<Integer, List<Character>> hashMap = new HashMap<>();
         for (int i = 0; i < input.length(); i++) {
             System.out.println(counter);
+            if (!hashMap.containsKey(counter)) {
+                hashMap.put(counter, new ArrayList<>());
+                hashMap.get(counter).add(input.charAt(i));
+            } else {
+                hashMap.get(counter).add(input.charAt(i));
+            }
             if (!reverse && counter <= numRows) {
                 counter++;
             }
@@ -86,11 +94,11 @@ public class ZigZagConversion {
                 reverse = false;
             }
         }
-        return "";
+        return hashMap.toString();
     }
 
     public static void main(String[] args) {
-        convert("PAYPALISHIRING", 3);
+
     }
 
 }
